@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Stock_MVC.Context;
+using Stock_MVC.Repositories;
+using Stock_MVC.Repositories.Interfaces;
 using System;
 
 namespace MVC_Curso;
@@ -15,6 +17,8 @@ public class Startup {
 
         services.AddDbContext<AppDbContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+        services.AddTransient<IProdutoRepository, ProdutoRepository>();
+        services.AddTransient<IDepartamentoRepository, DepartamentoRepository>();
 
         services.AddControllersWithViews();
     }

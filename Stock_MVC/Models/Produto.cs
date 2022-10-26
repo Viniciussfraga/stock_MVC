@@ -10,8 +10,7 @@ namespace Stock_MVC.Models {
 
         [Required(ErrorMessage = "O nome do produto deve ser informado")]
         [Display(Name = "Nome do Produto")]
-        [MinLength(3, ErrorMessage = "O nome do produto deve ter no mínimo {1} caracteres")]
-        [MaxLength(50, ErrorMessage = "O nome do produto deve ter no máximo {1} caracteres")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "O {0} deve ter no mínimo {1} e no máximo {2} caracteres")]
         public string Nome { get; set; }
 
         [Display(Name = "Descrição do Produto")]
@@ -21,16 +20,21 @@ namespace Stock_MVC.Models {
 
         [Required(ErrorMessage = "O preço do produto deve ser informado")]
         [Display(Name = "Preço do Produto")]
+        [Column(TypeName ="decimal(10,2)")]
+        [Range(0.00,999999.99, ErrorMessage = "O preço deve estar entre R$0.00 e R$999999.99")]
         public decimal Preco { get; set; }
 
         [Display(Name = "Imagem do Produto")]
+        [StringLength(200, ErrorMessage = "O {0} deve ter no máximo {1} caracteres")]
         public string ImagemUrl { get; set; }
 
         [Display(Name = "Imagem Thumbnail do Produto")]
         public string ImagemThumbnailUrl { get; set; }
+
         [Required]
-        [Display(Name = "Produto preferido")]
+        [Display(Name = "Produto preferido?")]
         public bool IsProdutoPreferido { get; set; }
+
         [Required]
         [Display(Name = "Stock do produto")]
         public bool EmEstoque { get; set; }

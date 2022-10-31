@@ -1,11 +1,19 @@
-﻿@model IEnumerable<Stock_MVC.Models.Produto>
+﻿@model ProdutoListViewModel
 
-<div> <h2>Todos os produtos</h2></div>
+<div> 
+    <h2>@Model.CategoriaAtual</h2>
+</div>
 
-@foreach(var produto in Model){
-    <div>
-        <h4>@produto.Nome</h4>
-        <p><img src="@produto.ImagemUrl"></p>
-        <h3>Preço : @produto.Preco.ToString("c")</h3>
+<div class="container">
+<div class="row">
+@foreach(var produto in Model.Produtos){
+    <div class="col-sm-4 col-md-4 col-lg-4">
+         <p><img src="@produto.ImagemUrl" class="img-fluid"></p>
+         <h3>Preço : @produto.Preco.ToString("c")</h3>
+         <h4>@produto.Nome</h4>
+         <p>@produto.Descricao</p>
+        
     </div>
 }
+</div>
+</div>

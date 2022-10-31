@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Stock_MVC.Repositories.Interfaces;
+using Stock_MVC.ViewModels;
 
 namespace Stock_MVC.Controllers {
     public class ProdutoController : Controller {
@@ -11,8 +12,14 @@ namespace Stock_MVC.Controllers {
 
         public IActionResult List() {
 
-            var produtos = _produtoRepository.Produtos;
-            return View(produtos);
+            //var produtos = _produtoRepository.Produtos;
+            //return View(produtos);
+
+            var produtoListViewModel = new ProdutoListViewModel();
+            produtoListViewModel.Produtos = _produtoRepository.Produtos;
+            produtoListViewModel.CategoriaAtual = "Categoria Atual";
+
+            return View(produtoListViewModel);
         }
     }
 }
